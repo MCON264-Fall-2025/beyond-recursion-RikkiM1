@@ -7,15 +7,23 @@ public class RecursiveInsertLast implements InsertLastStrategy {
 
     @Override
     public ListNode insertLast(ListNode head, int value) {
-        // TODO: implement recursively.
-        // Hints:
-        // - Base (empty list): create and return new node.
-        // - Base (tail reached): append new node and return head.
-        // - Recurse: head.next = insertLast(head.next, value); return head;
-        // - OPTIONAL: track recursion depth (e.g., param or field).
-        return head; // placeholder
-    }
+        // Case 1: empty list → new node becomes head
+        if (head == null) {
+            return new ListNode(value);
+        }
 
+        // Case 2: walk to the very last node
+        ListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        // Append a new node at the end
+        current.next = new ListNode(value);
+
+        // Return original head (important!)
+        return head;
+    }
     // Simple memory helpers for the demo
     private static long usedBytes() {
         Runtime rt = Runtime.getRuntime();

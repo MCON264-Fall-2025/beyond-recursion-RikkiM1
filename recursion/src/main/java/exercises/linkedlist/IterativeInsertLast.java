@@ -4,11 +4,22 @@ public class IterativeInsertLast implements InsertLastStrategy {
 
     @Override
     public ListNode insertLast(ListNode head, int value) {
-        // TODO: implement iteratively.
-        // Hints:
-        // - If head == null, return new node.
-        // - Otherwise, walk to tail and append; return original head.
-        return head; // placeholder
+        // If the list is empty, the new node becomes the head
+        if (head == null) {
+            return new ListNode(value);
+        }
+
+        // Otherwise walk to the tail
+        ListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        // Append at the end
+        current.next = new ListNode(value);
+
+        // Return the original head
+        return head;
     }
 
     private static long usedBytes() {
